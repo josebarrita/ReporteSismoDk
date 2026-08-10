@@ -225,7 +225,13 @@ function renderEmpDropdown() {
     o.textContent = e.a ? `${e.n} — ${e.a}` : e.n;
     sel.appendChild(o);
   });
-  document.getElementById("prior").style.display = "none";
+  // Auto-selecciona el primer resultado si hay búsqueda activa
+  if (q && list.length > 0) {
+    sel.value = list[0].e;
+    showPrior();
+  } else {
+    document.getElementById("prior").style.display = "none";
+  }
 }
 
 document.getElementById("empSearch").addEventListener("input", renderEmpDropdown);
